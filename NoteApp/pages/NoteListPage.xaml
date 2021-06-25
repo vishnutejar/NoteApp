@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteApp.pages.NoteListPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto,auto" Padding="20">
+            
+            <Label Grid.Row="0" Text="+" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="Pink" HeightRequest="40" WidthRequest="40">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AddNote"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <CollectionView x:Name="lstOfNoteDate" Grid.Row="1">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Green" Padding="0" Margin="0">
+
+                            <StackLayout HeightRequest="50" Padding="10" Margin="10">
+                                <Label Text="{Binding NoteInformation}"></Label>
+                        </StackLayout>
+                        </Frame>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout Grid.Row="1" BackgroundColor="Green" x:Name="notepopup" IsVisible="false" Padding="20">
+                <Entry x:Name="noteentry" TextColor="White" Placeholder="Enter Your Note Information" HeightRequest="200" WidthRequest="200"/>
+                <Button Text="Save" Clicked="SaveNote"></Button>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

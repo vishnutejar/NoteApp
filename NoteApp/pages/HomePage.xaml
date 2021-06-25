@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteApp.pages.HomePage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,Auto">
+            <Label Grid.Row="0" Text="+" TextColor="Green" HeightRequest="50" WidthRequest="50" HorizontalOptions="EndAndExpand">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OpenPopUp"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <CollectionView x:Name="lstNotes" Grid.Row="1" ItemsLayout="VerticalGrid, 2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="Auto" HeightRequest="200">
+                            <Label Grid.Row="1" Text="{Binding Infromation}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <StackLayout x:Name="infoPopup" IsVisible="false" Grid.Row="1" Orientation="Vertical">
+                <Entry x:Name="entryInfo" Placeholder="Enter Your Information"/>
+
+                <Button Text="Save" Clicked="SaveNoteInformation"></Button>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
