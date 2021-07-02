@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NoteApp.pages.HomePage">
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto,Auto">
+        <Grid RowDefinitions="Auto,*,Auto">
             <Label Grid.Row="0" Text="+" TextColor="Green" HeightRequest="50" WidthRequest="50" HorizontalOptions="EndAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OpenPopUp"/>
                 </Label.GestureRecognizers>
             </Label>
-            <CollectionView x:Name="lstNotes" Grid.Row="1" ItemsLayout="VerticalGrid, 2">
+            <!--<CollectionView x:Name="lstNotes" Grid.Row="1" ItemsLayout="VerticalGrid, 2">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid RowDefinitions="Auto" HeightRequest="200">
@@ -17,7 +17,68 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+            </CollectionView>-->
+            <CollectionView x:Name="lstNotes" Grid.Row="1" Margin="10">
+                <CollectionView.EmptyView>
+                    <Label Text="You have no events"
+                               VerticalOptions="CenterAndExpand"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                            HorizontalItemSpacing="10"
+                                            VerticalItemSpacing="10"
+                                            Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="{Binding Color}"
+                                   HasShadow="False"
+                                   Padding="0">
+                            <StackLayout Spacing="10"
+                                             Padding="10,10,10,0">
+                                <Label Text="{Binding  SaveDate, StringFormat='{0:HH:mm}'}"
+                                           FontAttributes="Bold"
+                                           FontSize="Large"/>
+                                <Label Text="{Binding  Infromation}"
+                                           FontSize="15"/>
+                                <Label Text="{Binding  Location, StringFormat='At {0}'}"
+                                           FontSize="Caption"
+                                           TextColor="White"/>
+
+                                <StackLayout Orientation="Horizontal"
+                                                 BackgroundColor="#66000000"
+                                                 Padding="5"
+                                                 Margin="-10,0">
+                                    <Image Source="ic_edit"
+                                               HorizontalOptions="EndAndExpand"
+                                               HeightRequest="20"/>
+
+                                    <Label Text="Edit"
+                                               VerticalOptions="Center"
+                                               FontSize="Caption"
+                                               TextColor="White"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <Frame.GestureRecognizers>
+                                <!--<DragGestureRecognizer DragStartingCommand="{Binding Path=BindingContext.DragStartingCommand, Source={x:Reference EventsCollection}}"
+                                                           DragStartingCommandParameter="{Binding .}" />-->
+                                <DragGestureRecognizer DragStarting="DragStarting" DragStartingCommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
             </CollectionView>
+            <!--#NOTE: Added this extra Layout to fix an issue where the image was disappearing after dropping the card-->
+            <StackLayout Grid.Row="2">
+                <Image HeightRequest="30"
+                           WidthRequest="30"
+                           Source="ic_trash"
+                           HorizontalOptions="EndAndExpand"/>
+                <StackLayout.GestureRecognizers>
+                    <DropGestureRecognizer Drop="DropOverCommand"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
             <StackLayout x:Name="infoPopup" IsVisible="false" Grid.Row="1" Orientation="Vertical">
                 <Entry x:Name="entryInfo" Placeholder="Enter Your Information"/>
 

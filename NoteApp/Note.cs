@@ -1,7 +1,6 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Drawing;
 
 namespace NoteApp
 {
@@ -12,5 +11,8 @@ namespace NoteApp
         public DateTime SaveDate { get; set; }
 
         public string NoteInformation { get; set; }
+
+        public Color Color { get; }
+
     }
 }

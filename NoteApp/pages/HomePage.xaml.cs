@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,6 +14,8 @@ namespace NoteApp.pages
         {
             InitializeComponent();
             InitDataBase();
+            noteInfomations = new ObservableCollection<NoteInfomation>(App.noteDateBase.GetNoteInfromation().Result);
+            lstNotes.ItemsSource = noteInfomations;
         }
 
         private void InitDataBase()
@@ -34,13 +32,29 @@ namespace NoteApp.pages
         {
             var noteInformation = new NoteInfomation
             {
-                Infromation = entryInfo.Text
+                Infromation = entryInfo.Text,
+                SaveDate = DateTime.Now.Date,
+                color = noteInfomations.Count / 2 > 0 ? Color.Red : Color.Green
+
             };
 
             App.noteDateBase.SaveNoteInformation(noteInformation);
 
             infoPopup.IsVisible = false;
             entryInfo.Text = string.Empty;
+            noteInfomations = new ObservableCollection<NoteInfomation>(App.noteDateBase.GetNoteInfromation().Result);
+            lstNotes.ItemsSource = noteInfomations;
+
+        }
+
+        private void DragStarting(object sender, DragStartingEventArgs e)
+        {
+
+        }
+
+        private void DropOverCommand(object sender, DropEventArgs e)
+        {
+
         }
     }
 }
