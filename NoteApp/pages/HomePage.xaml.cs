@@ -9,18 +9,20 @@ namespace NoteApp.pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        ObservableCollection<NoteInfomation> noteInfomations { get; set; }
+        ObservableCollection<NoteInformation> noteInfomations { get; set; }
         public HomePage()
         {
             InitializeComponent();
             InitDataBase();
-            noteInfomations = new ObservableCollection<NoteInfomation>(App.noteDateBase.GetNoteInfromation().Result);
-            lstNotes.ItemsSource = noteInfomations;
+           
         }
 
         private void InitDataBase()
         {
             App.noteDateBase.CreateNoteInformationTable();
+            noteInfomations = new ObservableCollection<NoteInfomation>(App.noteDateBase.GetNoteInfromation().Result);
+            if (noteInfomations != null)
+                lstNotes.ItemsSource = noteInfomations;
         }
 
         private void OpenPopUp(object sender, EventArgs e)

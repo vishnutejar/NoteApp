@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteApp.pages.ListOfNotes">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="OnItemAdded">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <On Platform="Android, UWP"
+                        Value="icon.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+       
+        <StackLayout>
+            <CollectionView  ItemsLayout="VerticalGrid, 2" BackgroundColor="AliceBlue" x:Name="lstOfNotesinhome">
+                <CollectionView.EmptyView>
+                    <ContentView>
+                        <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                            <Label Text="No results matched your filter."
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                            <Label Text="Try a broader filter?"
+                           FontAttributes="Italic"
+                           FontSize="12"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </ContentView>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout  Padding="5">
+                            <Frame Margin="0" BorderColor="Blue" Padding="0" BackgroundColor="Pink">
+                                <StackLayout Orientation="Vertical" Margin="5" Spacing="20">
+                                    <Label Text="{Binding Note}"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label HorizontalOptions="End" Text="{Binding SaveTime}"/>
+                                        <Button Text="edit" Clicked="EditNote"></Button>
+
+                                    </StackLayout>
+                               </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+                       
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

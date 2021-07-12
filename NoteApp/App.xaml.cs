@@ -1,25 +1,23 @@
 ﻿using NoteApp.pages;
 using NoteApp.repostiory;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NoteApp
 {
     public partial class App : Application
     {
-        static NoteInformationDataBase database;
-        public static NoteInformationDataBase Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new NoteInformationDataBase();
-                }
-                return database;
-            }
-        }
+        //static NoteInformationDataBase database;
+        //public static NoteInformationDataBase Database
+        //{
+        //    get
+        //    {
+        //        if (database == null)
+        //        {
+        //            database = new NoteInformationDataBase();
+        //        }
+        //        return database;
+        //    }
+        //}
 
         static NoteDateBase noteDate;
         public static NoteDateBase noteDateBase
@@ -39,7 +37,7 @@ namespace NoteApp
         {
             InitializeComponent();
 
-            MainPage = new HomePage();
+            MainPage = new NavigationPage(new ListOfNotes());
         }
 
         protected override void OnStart()

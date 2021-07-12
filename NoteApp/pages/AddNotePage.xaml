@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteApp.pages.AddNotePage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*,Auto">
+            <Button Grid.Row="0" Text="X" Clicked="CloseScreen" HorizontalOptions="End" BackgroundColor="Transparent"></Button>
+            <Editor
+                x:Name="editorNoteInformation"
+                HeightRequest="300"
+                Grid.Row="1"
+               VerticalOptions="CenterAndExpand"
+                    />
+            <Button Grid.Row="2" Text="Save Note" Clicked="SaveNote" VerticalOptions="End" Margin="
+                    20"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -5,7 +5,7 @@ namespace NoteApp.utils
 {
     public static class Constants
     {
-        public const string DatabaseFilename = "NoteAppSQLite.db3";
+        public const string DatabaseFilename = "NoteDb.db3";
         public const SQLite.SQLiteOpenFlags Flags =
        // open the database in read/write mode
        SQLite.SQLiteOpenFlags.ReadWrite |
@@ -18,7 +18,9 @@ namespace NoteApp.utils
         {
             get
             {
+                /*  /date/localapplicationdate */
                 var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                /* /date/localapplicationdate  +  NoteDb.db3*/
                 return Path.Combine(basePath, DatabaseFilename);
             }
         }
