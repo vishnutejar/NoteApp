@@ -15,7 +15,7 @@
     <ContentPage.Content>
        
         <StackLayout>
-            <CollectionView  ItemsLayout="VerticalGrid, 2" BackgroundColor="AliceBlue" x:Name="lstOfNotesinhome">
+            <CollectionView SelectionMode="Single" SelectionChanged="OnCollectionViewSelectionChanged" ItemsLayout="VerticalGrid, 2" BackgroundColor="AliceBlue" x:Name="lstOfNotesinhome">
                 <CollectionView.EmptyView>
                     <ContentView>
                         <StackLayout HorizontalOptions="CenterAndExpand"
@@ -42,7 +42,7 @@
                                     <Label Text="{Binding Note}"/>
                                     <StackLayout Orientation="Horizontal">
                                         <Label HorizontalOptions="End" Text="{Binding SaveTime}"/>
-                                        <Button Text="edit" Clicked="EditNote"></Button>
+                                        <Button Text="Delete" Clicked="DeleteNote"></Button>
 
                                     </StackLayout>
                                </StackLayout>
